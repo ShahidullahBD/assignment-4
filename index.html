@@ -5,15 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Tracker</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google font "Geist" -->
     <style>
         * {
-            font-family: "Geist", sans-serif;      
+            font-family: "Geist", sans-serif;
         }
     </style>
 </head>
@@ -21,21 +30,224 @@
 <body class="w-[80%] mx-auto mt-6 bg-[#f2f9ff]">
     <header>
         <h1 class="text-4xl font-bold">Job Application Tracker</h1>
-        <div class="grid grid-cols-3 gap-4">
-            <div class="bg-white p-3 rounded-2">
+        <div class="grid grid-cols-3 gap-4 mt-5 mb-[30px]">
+            <div class="bg-white p-5 rounded-2">
                 <h4>Total</h4>
-                <p id="total">0</p>
+                <p id="total-count" class="text-[22px] font-bold">0</p>
             </div>
-            <div class="bg-white p-3 rounded-2">
+            <div class="bg-white p-5 rounded-2">
                 <h4>Interview</h4>
-                <p id="interview">0</p>
+                <p id="interview-count" class="text-[22px] font-bold text-green-500">0</p>
             </div>
-            <div class="bg-white p-3 rounded-2">
+            <div class="bg-white p-5 rounded-2">
                 <h4>Rejected</h4>
-                <p id="rejected">0</p>
+                <p id="rejected-count" class="text-[22px] font-bold text-red-500">0</p>
             </div>
         </div>
     </header>
+    <hr>
+
+    <div class="my-[30px]">
+        <h2 class="text-3xl font-bold">Available Jobs</h2>
+        <div class="flex gap-3 mt-6">
+            <button id="all-btn" class="bg-[#3B82F6] text-white px-3 py-2 rounded">All</button>
+            <button id="interview-btn" class="bg-[#3B82F6] text-white px-3 py-2 rounded">Interview</button>
+            <button id="rejected-btn" class="bg-[#3B82F6] text-white px-3 py-2 rounded">Rejected</button>
+        </div>
+    </div>
+
+    <!-- Main Section -->
+    <main class="space-y-5">
+
+        <!-- Card No.1 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Software Engineer</h3>
+                    <p class="text-[#64748B]"><span class="uppercase">Star</span> Tech Solutions at San Francisco, CA.
+                    </p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$140,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span>Design, develop, and
+                        maintain
+                        high-quality software applications. Work
+                        closely with product teams to understand requirements, collaborate with cross-functional teams
+                        to
+                        ship new features, and write clean, maintainable code following best practices. </p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.2 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Marketing Coordinator</h3>
+                    <p class="text-[#64748B]"><span class="uppercase">Statewide Window and Doors</span>at Lake Worth, FL.
+                    </p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$60,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span>Help create, organize, and schedule marketing content. Perform basic research for blog topics and marketing campaigns. Support the marketing department with social media management, event coordination, and tracking campaign results. </p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.3 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Mid-Level Full-Stack Developer</h3>
+                    <p class="text-[#64748B]"><span class="uppercase">strc</span> Tech ltd at New York, NY.
+                    </p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$160,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span> Responsible for end-to-end web application development. Expertise in Node.js, AWS, and TypeScript is highly valued for command of top-tier salaries in this market. Responsibilities include coding, innovative design, and managing both front-end and back-end integration.
+                    </p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.4 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Hybrid DevOps Engineer</h3>
+                    <p class="text-[#64748B]"><span class="uppercase">AMD</span> Engineering Ltd at San Francisco, CA.
+                    </p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$135,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span>Design and maintain CI/CD pipelines and manage infrastructure using code (IaC) like Terraform and Ansible. You will automate software deployments, monitor system performance, and ensure cloud security best practices across AWS or Azure environments.</p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.5 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Software Development Engineer (New Grad)</h3>
+                    <p class="text-[#64748B]"><span class="uppercase">Amazon, ICF</span> at Remote or Canada-based options
+                    </p>
+                    <p class="text-[#64748B]">Full-time (New Graduate/Entry-Level) <span class="font-bold">$45,000 to $60,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span> Design and develop scalable solutions using cloud-native architectures. You will write clean code in languages like Java, Python, or C++, participate in code reviews, and help maintain resilient distributed systems.</p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.6 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Cybersecurity Analyst</h3>
+                    <p class="text-[#64748B]">Robert Half or Deloitte</p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$104,854 – $168,430</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span> Monitor and protect company networks from unauthorized access and cyber threats. Duties include implementing safety systems, investigating security alerts, and performing ethical hacking assessments to identify vulnerabilities. Specialized certifications like CISSP can significantly increase your starting pay.</p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.7 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Mobile App Developer</h3>
+                    <p class="text-[#64748B]">Apple</p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$140,000 - $160,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span> Design, code, and test native mobile applications for Android (Java/Kotlin). You will migrate existing web apps to mobile platforms, manage hardware integrations (like location services), and collaborate with UI/UX designers to optimize the mobile player experience.</p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+
+        <!-- Card No.8 -->
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between">
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-bold">Game Programmer</h3>
+                    <p class="text-[#64748B]">Gameplay Engineering at Berkeley, CA.</p>
+                    <p class="text-[#64748B]">Full-time, <span class="font-bold">$140,000 - $180,000</span> per year</p>
+                    <div class=" bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">Not Applied</p>
+                    </div>
+                    <p class="text-[#64748B]"> <span class="font-bold">Job Description: </span> Write and input the code that makes video games playable. Focus on back-end game components, physics engines, and graphics systems using C++ or C#. You will work closely with narrative designers to translate storyboards into interactive virtual worlds. </p>
+                </div>
+                <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button class="border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                <button class="border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

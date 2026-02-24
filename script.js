@@ -1,6 +1,7 @@
 let = enterviewList = [];
 let = rejectedList = [];
-// console.log(enterviewList);
+
+let currentStatus = 'all-btn';
 
 let totalCount = document.getElementById('total-count');
 let interviewCount = document.getElementById('interview-count');
@@ -26,24 +27,15 @@ function totalCardsCount() {
 
 totalCardsCount()
 
-const newArr = [{name: 'arif', age: 35}, {name: 'arif', age: 35},{name: 'arif', age: 35}]
-const arrayLength = newArr.length;
-console.log(arrayLength);
-
 function btnToggle(id) {
-    // remove style of buttons
-    // allBtn.classList.remove('bg-[#3B82F6]')
-    // interviewBtn.classList.remove('bg-[#3B82F6]')
-    // rejectedBtn.classList.remove('bg-[#3B82F6]')
 
-    // adding style of buttons
     allBtn.classList.add('bg-gray-400')
     interviewBtn.classList.add('bg-gray-400')
     rejectedBtn.classList.add('bg-gray-400')
 
     const selected = document.getElementById(id);
-    // console.log(selected);
-
+    currentStatus = id;
+    
     selected.classList.remove('bg-gray-400');
     selected.classList.add('bg-[#3B82F6]');
 
@@ -51,26 +43,24 @@ function btnToggle(id) {
         mainContainer.classList.add('hidden');
         interviewSection.classList.remove('hidden');
         rejectedSection.classList.add('hidden');
-    }
-    if (id == 'all-btn') {
+        renderInterview()
+    } else if (id == 'all-btn') {
         mainContainer.classList.remove('hidden');
         interviewSection.classList.add('hidden');
         rejectedSection.classList.add('hidden');
-    }
-    if (id == 'rejected-btn') {
+    } else if (id == 'rejected-btn') {
         rejectedSection.classList.remove('hidden');
         mainContainer.classList.add('hidden');
         interviewSection.classList.add('hidden')
+        renderRejected()
     }
-
-
 }
 
 mainContainer.addEventListener('click', function (event) {
 
     if (event.target.classList.contains('btn-interview')) {
-        const parentNode = event.target.parentNode.parentNode;
-        // console.log(parentNode);
+
+        const parentNode = event.target.parentNode.parentNode.parentNode;
 
         const jobPosition = parentNode.querySelector('.job-position').innerText;
         const companyDetails = parentNode.querySelector('.company').innerText;
@@ -85,22 +75,59 @@ mainContainer.addEventListener('click', function (event) {
             jobPosition,
             companyDetails,
             salary,
-            applicationStatus,
+            applicationStatus: 'APPLIED',
             jobDescription,
         }
 
-        // console.log(cardInfo);
-
-        const jobPostExist = enterviewList.find(item => item.jobPosition == cardInfo.jobPosition);
-
+        const jobPostExist = enterviewList.find(item => item.jobPosition == cardInfo.jobPosition && item.companyDetails == cardInfo.companyDetails);
 
         if (!jobPostExist) {
             enterviewList.push(cardInfo)
         }
+        
+        rejectedList = rejectedList.filter(item => item.jobPosition != cardInfo.jobPosition)
+                
+        if(currentStatus == 'rejected-btn'){
+            renderRejected()
+        }
+        
+        totalCardsCount()
+    }
 
-        // console.log(enterviewList);
 
-        renderInterview()
+    else if (event.target.classList.contains('btn-rejected')) {
+
+        const parentNode = event.target.parentNode.parentNode.parentNode;
+
+        const jobPosition = parentNode.querySelector('.job-position').innerText;
+        const companyDetails = parentNode.querySelector('.company').innerText;
+        const salary = parentNode.querySelector('.salary').innerText;
+        const applicationStatus = parentNode.querySelector('.application-status').innerText;
+        const jobDescription = parentNode.querySelector('.job-description').innerText;
+
+        parentNode.querySelector('.application-status').innerText = 'REJECTED'
+
+        const cardInfo = {
+            jobPosition,
+            companyDetails,
+            salary,
+            applicationStatus: 'REJECTED',
+            jobDescription,
+        }
+
+        const jobPostExist = rejectedList.find(item => item.jobPosition == cardInfo.jobPosition && item.companyDetails == cardInfo.companyDetails);
+
+        if (!jobPostExist) {
+            rejectedList.push(cardInfo)
+        }
+        
+        enterviewList = enterviewList.filter(item => item.jobPosition != cardInfo.jobPosition)
+        
+        if(currentStatus == 'interview-btn'){
+            renderInterview()
+        }
+        
+        totalCardsCount()    
     }
 
 });
@@ -109,7 +136,6 @@ function renderInterview() {
     interviewSection.innerHTML = ''
 
     for (let interview of enterviewList) {
-        // console.log(interview);
         let div = document.createElement('div');
         div.className = 'bg-white rounded-lg p-6 flex justify-between'
         div.innerHTML = `
@@ -136,4 +162,36 @@ function renderInterview() {
         `
         interviewSection.appendChild(div);
     }
-}
+};
+
+function renderRejected() {
+    interviewSection.innerHTML = ''
+
+    for (let rejected of rejectedList) {
+        let div = document.createElement('div');
+        div.className = 'bg-white rounded-lg p-6 flex justify-between'
+        div.innerHTML = `
+           <div>
+                <div class="space-y-3">
+                    <h3 class="job-position text-2xl font-bold">${rejected.jobPosition}</h3>
+                    <p class="company text-[#64748B]">${rejected.companyDetails}</p>
+                    <p class="slary text-[#64748B]">${rejected.salary}</p>
+                    <div class="application-status bg-[#eef4ff] w-[120px] text-center rounded-sm">
+                        <p class="uppercase">${rejected.applicationStatus}</p>
+                    </div>
+                    <p class="Job-description text-[#64748B]">${rejected.jobDescription}</p>
+                </div>
+                <div class="mt-5 flex gap-3">
+                    <button
+                        class="btn-interview border-green-500 border text-green-500 p-2 rounded-lg uppercase">Interview</button>
+                    <button
+                        class="btn-rejected border-red-500 border text-red-500 p-2 rounded-lg uppercase">Rejected</button>
+                </div>
+            </div>
+            <div class="border border-[#F1F2F4] h-8 w-14 rounded-full text-center pt-1">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+        `
+        rejectedSection.appendChild(div);
+    }
+};
